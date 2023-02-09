@@ -7,11 +7,10 @@ class Ship;
 class Game {
 public:
     Game();
-
-    Board playerBoard;
-    Board compBoard;
+    void printBoards();
 
 private:
-    
+    Board playerBoard;
+    Board compBoard;
 
 };
