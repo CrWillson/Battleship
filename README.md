@@ -6,5 +6,5 @@
 Requires ncurses to be installed.
 
 ```
-Command line argument forthcoming.
+g++ main.cpp Game.cpp Board.cpp Ship.cpp -lncurses -o Battleship
 ```
