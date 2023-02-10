@@ -2,6 +2,9 @@
 
 #include "Ship.h"
 #include <map>
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
 
 using namespace std;
 
