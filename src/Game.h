@@ -16,4 +16,6 @@ private:
     Board playerBoard;
     Board compBoard;
 
+    pair<int, int> getMovePair();
+
 };
