@@ -5,9 +5,11 @@ using namespace std;
 
 Board::Board() {
     for (int i = 0; i < 10; i++) {
+        vector<int> temp;
         for (int j = 0; j < 10; j++) {
-            boardArr[i][j] = 0;
+            temp.push_back(0);
         }
+        boardArr.push_back(temp);
     }
 
     ships[1] = 5;
@@ -24,45 +26,45 @@ void Board::placeShips() {
             int randCol = rand() % 10;
             int randRow = rand() % 10;
             int randDir = rand() % 4; // 0 = up, 1 = right, 2 = down, 3 = left
-            bool pass = false;
+            bool placeFail = false;
 
             if (((randDir == 0) && (randRow < ships[i] - 1)) ||
                 ((randDir == 1) && (randCol > 10 - ships[i])) ||
                 ((randDir == 2) && (randRow > 10 - ships[i])) ||
                 ((randDir == 3) && (randCol < ships[i] - 1))) {
-                    pass = true;
+                    placeFail = true;
                 }
             
             if (randDir == 0) {
                 for (int j = 0; j < ships[i]; j++) {
-                    if (boardArr[randCol][randRow - j] != 0) {
-                        pass = true;
+                    if (boardArr.at(randCol).at(randRow - j) != 0) {
+                        placeFail = true;
                     }
                 }
             }
             else if (randDir == 1) {
                 for (int j = 0; j < ships[i]; j++) {
-                    if (boardArr[randCol + j][randRow] != 0) {
-                        pass = true;
+                    if (boardArr.at(randCol + j).at(randRow) != 0) {
+                        placeFail = true;
                     }
                 }
             }
             else if (randDir == 2) {
                 for (int j = 0; j < ships[i]; j++) {
-                    if (boardArr[randCol][randRow + j] != 0) {
-                        pass = true;
+                    if (boardArr.at(randCol).at(randRow + j) != 0) {
+                        placeFail = true;
                     }
                 }
             }
             else if (randDir == 3) {
                 for (int j = 0; j < ships[i]; j++) {
-                    if (boardArr[randCol - j][randRow] != 0) {
-                        pass = true;
+                    if (boardArr.at(randCol - j).at(randRow) != 0) {
+                        placeFail = true;
                     }
                 }
             }
 
-            if (!pass) {
+            if (!placeFail) {
                 if (randDir == 0) {
                     for (int j = 0; j < ships[i]; j++) {
                         boardArr[randCol][randRow - j] = i;
@@ -99,4 +101,9 @@ void Board::printBoard() {
         cout << "\n";
     }
     cout << "\n";
+}
+
+pair<int, int> Board::getMove()
+{
+    return pair<int, int>();
 }

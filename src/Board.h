@@ -14,8 +14,10 @@ public:
     Board();
     void placeShips();
     void printBoard();
+    virtual pair<int, int> getMove();
 
 private:
-    int boardArr[10][10];
+    vector<vector<int>> boardArr;
+    vector<pair<int, int>> guessedCells;
     map<int, int> ships;
 };

@@ -5,6 +5,7 @@ using namespace std;
 Game::Game() {
     playerBoard.placeShips();
     compBoard.placeShips();
+    playerTurn = true;
 }
 
 void Game::printBoards() {
@@ -12,13 +13,14 @@ void Game::printBoards() {
     playerBoard.printBoard();
 }
 
-pair<int, int> Game::getMove()
+void Game::playMove()
 {
     pair<int, int> move;
     bool valid = false;
 
     while (!valid) {
         try {
+            // change to get the move from either the comp or player board
             move = getMovePair();
         }
         catch (invalid_argument e) {
@@ -27,8 +29,7 @@ pair<int, int> Game::getMove()
         }
         valid = true;
     }
-    
-    return move;
+
 }
 
 pair<int, int> Game::getMovePair() {
