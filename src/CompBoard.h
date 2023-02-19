@@ -3,5 +3,5 @@
 class CompBoard : public Board {
 public:
     CompBoard();
-    pair<int, int> getMove() override;
+    pair<int, int> getMove();
 };

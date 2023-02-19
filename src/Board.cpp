@@ -32,7 +32,7 @@ void Board::placeShips() {
                 ((randDir == 1) && (randCol > 10 - ships[i])) ||
                 ((randDir == 2) && (randRow > 10 - ships[i])) ||
                 ((randDir == 3) && (randCol < ships[i] - 1))) {
-                    placeFail = true;
+                    continue;
                 }
             
             if (randDir == 0) {
@@ -95,6 +95,7 @@ void Board::printBoard() {
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
             if (boardArr[i][j] == 0) {cout << ".";}
+            else if (boardArr[i][j] == -1) {cout << "X";}
             else {cout << boardArr[i][j];}
             cout << " ";
         }
@@ -103,7 +104,19 @@ void Board::printBoard() {
     cout << "\n";
 }
 
-pair<int, int> Board::getMove()
-{
-    return pair<int, int>();
+int Board::playMove(pair<int, int> guess) {
+    if (binary_search(guessedCells.begin(), guessedCells.end(), guess)) {
+        throw invalid_argument("Cell has already been guessed");
+    }
+
+    int result = boardArr[guess.first][guess.second];
+    boardArr[guess.first][guess.second] = -1;
+    guessedCells.push_back(guess);
+
+    for (auto row = boardArr.begin(); row != boardArr.end(); row++) {
+        if (find(row->begin(), row->end(), result) != row->end()) {
+            return result;
+        }
+    }
+    return result + 10;
 }

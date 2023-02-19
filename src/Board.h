@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ public:
     Board();
     void placeShips();
     void printBoard();
-    virtual pair<int, int> getMove();
+    int playMove(pair<int, int>);
 
 private:
     vector<vector<int>> boardArr;

@@ -16,6 +16,4 @@ private:
     CompBoard compBoard;
     bool playerTurn;
 
-    pair<int, int> getMovePair();
-
 };

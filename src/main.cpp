@@ -7,7 +7,11 @@ using namespace std;
 int main(int argc, char** argv) {
 	srand(time(NULL));
 	Game mainGame;
-	mainGame.playMove();
+
+	for (int i = 0; i < 5; i++) {
+		mainGame.printBoards();
+		mainGame.playMove();
+	}
 	mainGame.printBoards();
 
 	return 0;
